@@ -26,7 +26,7 @@ jobs:
 
       - name: Run a multi-line script
         run: |
-          sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub io.neovim.nvim "$GITHUB_WORKSPACE"/io.neovim.nvim/io.neovim.nvim.yaml
+          sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub gg.slippi.Ishiiruka "$GITHUB_WORKSPACE"/slippi-flatpak/gg.slippi.Ishiiruka.json
           
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@master
