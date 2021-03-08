@@ -36,3 +36,4 @@ jobs:
           source-directory: repo
           destination-github-username: 'Ma1thew'
           destination-repository-name: 'flatpaks'
+          target-branch: 'main'
