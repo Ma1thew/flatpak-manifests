@@ -1,0 +1,3 @@
+[submodule "slippi-flatpak"]
+	path = slippi-flatpak
+	url = https://github.com/Ma1thew/slippi-flatpak

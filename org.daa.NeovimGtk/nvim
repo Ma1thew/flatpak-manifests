@@ -1,3 +1,0 @@
-#!/bin/sh
-
-/usr/bin/flatpak-spawn --host /var/lib/flatpak/exports/bin/io.neovim.nvim "$@"

@@ -1,5 +1,0 @@
-.flatpak-builder
-build
-nvim-gtk
-*.flatpak
-org.daa.NeovimGtk
