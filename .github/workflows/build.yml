@@ -24,14 +24,9 @@ jobs:
       - name: Add flathub remote
         run: sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-      - name: Setup repo
-        run: |
-          mkdir repo
-          export REPO=$(pwd)/repo
-
       - name: Run a multi-line script
         run: |
-          sudo flatpak-builder --repo="$REPO" --force-clean --install-deps-from=flathub io.neovim.nvim "$GITHUB_WORKSPACE"/io.neovim.nvim/io.neovim.nvim.yaml
+          sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub io.neovim.nvim "$GITHUB_WORKSPACE"/io.neovim.nvim/io.neovim.nvim.yaml
           
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@master
