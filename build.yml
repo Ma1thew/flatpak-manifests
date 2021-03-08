@@ -1,0 +1,43 @@
+name: build-and-push-to-repo
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: 0 0 * * 0
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      
+      - name: Install flatpak-builder
+        run: sudo apt-get install -y flatpak flatpak-builder
+        
+      - name: Add flathub remote
+        run: sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+      - name: Setup repo
+        run: |
+          mkdir repo
+          export REPO=$(pwd)/repo
+
+      - name: Run a multi-line script
+        run: |
+          flatpak-builder --repo="$REPO" --force-clean --install-deps-from=flathub org.multimc.MultiMC5 "$GITHUB_WORKSPACE"/org.multimc.MultiMC5/org.multimc.MultiMC5.json
+          
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@master
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: repo
+          destination-github-username: 'Ma1thew'
+          destination-repository-name: 'flatpaks'
