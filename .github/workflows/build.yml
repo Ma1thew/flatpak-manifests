@@ -31,7 +31,7 @@ jobs:
 
       - name: Run a multi-line script
         run: |
-          sudo flatpak-builder --repo="$REPO" --force-clean --install-deps-from=flathub org.multimc.MultiMC5 "$GITHUB_WORKSPACE"/org.multimc.MultiMC5/org.multimc.MultiMC5.json
+          sudo flatpak-builder --repo="$REPO" --force-clean --install-deps-from=flathub io.neovim.nvim "$GITHUB_WORKSPACE"/io.neovim.nvim/io.neovim.nvim.yaml
           
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@master
