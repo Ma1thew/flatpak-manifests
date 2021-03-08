@@ -1,0 +1,55 @@
+id: org.freedesktop.Sdk.Extension.pyright
+default-branch: 20.08
+sdk: org.freedesktop.Sdk//20.08
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.node14
+runtime: org.freedesktop.Sdk
+runtime-version: 20.08
+build-extension: true
+appstream-compose: false
+modules:
+
+  - name: node
+    buildsystem: simple
+    build-commands:
+      - '/usr/lib/sdk/node14/install-sdk.sh'
+
+  - name: pyright
+    buildsystem: simple
+    build-options:
+      build-args:
+        - '--share=network'
+      append-path: '/usr/lib/sdk/node14/bin:./node_modules/.bin'
+      env:
+        npm_config_nodedir: /usr/lib/sdk/node14
+    build-commands:
+      - npm install --cache=/run/build/pyright/npm-cache
+      - npm run bootstrap
+      - npm --prefix=packages/pyright --cache=/run/build/pyright/npm-cache install
+      - mkdir -p /usr/lib/sdk/pyright/main
+      - npm --prefix=packages/pyright run build
+      - cp -ra ./* /usr/lib/sdk/pyright/main
+    sources:
+      - type: git
+        url: https://github.com/microsoft/pyright
+        branch: master
+
+  - name: pyright-langserver
+    buildsystem: simple
+    build-commands:
+      - install -Dm 755 run.sh /usr/lib/sdk/pyright/bin/pyright-langserver
+    sources:
+      - type: script
+        dest-filename: run.sh
+        commands:
+          - source /usr/lib/sdk/pyright/node/enable.sh
+          - node /usr/lib/sdk/pyright/main/packages/pyright/langserver.index.js $@
+
+  - name: metadata
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 -t ${FLATPAK_DEST}/share/metainfo ${FLATPAK_ID}.metainfo.xml
+      - appstream-compose --basename=${FLATPAK_ID} --prefix=${FLATPAK_DEST} --origin=flatpak ${FLATPAK_ID}
+    sources:
+      - type: file
+        path: org.freedesktop.Sdk.Extension.pyright.metainfo.xml

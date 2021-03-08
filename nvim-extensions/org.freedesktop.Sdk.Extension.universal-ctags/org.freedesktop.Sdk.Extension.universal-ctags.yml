@@ -1,0 +1,28 @@
+id: org.freedesktop.Sdk.Extension.universal-ctags
+default-branch: 20.08
+sdk: org.freedesktop.Sdk//20.08
+runtime: org.freedesktop.Sdk
+runtime-version: 20.08
+build-extension: true
+appstream-compose: false
+build-options:
+  prefix: /usr/lib/sdk/universal-ctags
+  prepend-path: /usr/lib/sdk/universal-ctags/bin
+  strip: true
+modules:
+
+  - name: universal-ctags
+    buildsystem: autotools
+    sources:
+      - type: git
+        url: https://github.com/universal-ctags/ctags
+        tag: master
+
+  - name: metadata
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 -t ${FLATPAK_DEST}/share/metainfo ${FLATPAK_ID}.metainfo.xml
+      - appstream-compose --basename=${FLATPAK_ID} --prefix=${FLATPAK_DEST} --origin=flatpak ${FLATPAK_ID}
+    sources:
+      - type: file
+        path: org.freedesktop.Sdk.Extension.universal-ctags.metainfo.xml

@@ -1,0 +1,36 @@
+id: org.freedesktop.Sdk.Extension.rust-analyzer
+default-branch: 20.08
+sdk: org.freedesktop.Sdk//20.08
+sdk-extensions: 
+    - org.freedesktop.Sdk.Extension.rust-stable
+runtime: org.freedesktop.Sdk
+runtime-version: 20.08
+build-extension: true
+appstream-compose: false
+modules:
+
+  - name: rust-analyzer
+    buildsystem: simple
+    build-options:
+        build-args:
+            - "--share=network"
+        append-path: /usr/lib/sdk/rust-stable/bin
+        env:
+            CARGO_HOME: /run/build/rust-analyzer/cargo
+    build-commands:
+        - cargo build --release
+        - install -D -m 755 ./target/release/rust-analyzer -t /usr/lib/sdk/rust-analyzer/bin
+        - install -D -m 755 ./target/release/xtask -t /usr/lib/sdk/rust-analyzer/bin
+    sources:
+      - type: git
+        url: https://github.com/rust-analyzer/rust-analyzer
+        branch: master
+
+  - name: metadata
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 -t ${FLATPAK_DEST}/share/metainfo ${FLATPAK_ID}.metainfo.xml
+      - appstream-compose --basename=${FLATPAK_ID} --prefix=${FLATPAK_DEST} --origin=flatpak ${FLATPAK_ID}
+    sources:
+      - type: file
+        path: org.freedesktop.Sdk.Extension.rust-analyzer.metainfo.xml

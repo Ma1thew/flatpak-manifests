@@ -1,0 +1,55 @@
+id: org.freedesktop.Sdk.Extension.jsonls
+default-branch: 20.08
+sdk: org.freedesktop.Sdk//20.08
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.node14
+runtime: org.freedesktop.Sdk
+runtime-version: 20.08
+build-extension: true
+appstream-compose: false
+modules:
+
+  - name: node
+    buildsystem: simple
+    build-commands:
+      - '/usr/lib/sdk/node14/install-sdk.sh'
+
+  - name: jsonls
+    buildsystem: simple
+    subdir: language-server
+    build-options:
+      build-args:
+        - '--share=network'
+      append-path: '/usr/lib/sdk/node14/bin:./node_modules/.bin'
+      env:
+        npm_config_nodedir: /usr/lib/sdk/node14
+    build-commands:
+      - npm install --cache=/run/build/jsonls/npm-cache
+      - mkdir -p /usr/lib/sdk/jsonls/main
+      - cp -ra ./* /usr/lib/sdk/jsonls/main
+    sources:
+      - type: git
+        url: https://github.com/sublimelsp/LSP-json
+        branch: master
+      - type: file
+        path: tsconfig.json.new
+
+  - name: vscode-json-languageserver
+    buildsystem: simple
+    build-commands:
+      - install -Dm 755 run.sh /usr/lib/sdk/jsonls/bin/vscode-json-languageserver
+    sources:
+      - type: script
+        dest-filename: run.sh
+        commands:
+          - source /usr/lib/sdk/jsonls/node/enable.sh
+          - node /usr/lib/sdk/jsonls/main/out/node/jsonServerMain.js $@
+
+  - name: metadata
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 -t ${FLATPAK_DEST}/share/metainfo ${FLATPAK_ID}.metainfo.xml
+      - appstream-compose --basename=${FLATPAK_ID} --prefix=${FLATPAK_DEST} --origin=flatpak ${FLATPAK_ID}
+    sources:
+      - type: file
+        path: org.freedesktop.Sdk.Extension.jsonls.metainfo.xml

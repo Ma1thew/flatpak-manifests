@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="runtime">
+  <id>org.freedesktop.Sdk.Extension.cmakels</id>
+  <name>cmakels</name>
+  <summary>CMake LSP Implementation. Alpha Stage, work in progress.</summary>
+  <url type="homepage">https://github.com/regen100/cmake-language-server</url>
+  <url type="bugtracker">https://github.com/regen100/cmake-language-server/issues</url>
+  <project_license>MIT</project_license>
+  <metadata_license>CC0-1.0</metadata_license>
+</component>

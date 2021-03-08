@@ -1,0 +1,2 @@
+# nvim-flatpak-extensions
+Simple flatpak manifests for external dependencies of some vim/neovim plugins. To install, use `flatpak-builder`. For example, to install universal-ctags, run `sudo flatpak-builder --install --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.universal-ctags org.freedesktop.Sdk.Extension.universal-ctags.yml`. Inside the sandbox, the extension can be found at `/usr/lib/sdk/`. The easiest way to add these to PATH is probably a flatpak override for the PATH variable.

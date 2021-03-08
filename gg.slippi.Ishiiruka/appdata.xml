@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2016 Jeremy Newton -->
+<application>
+  <id type="desktop">slippi.desktop</id>
+  <name>Project Slippi Ishiiruka</name>
+  <summary>GameCube / Wii / Triforce Emulator</summary>
+  <metadata_license>CC-BY-SA-3.0</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <content_rating type="oars-1.0" />
+  <description><p>Super Smash Bros Melee was released in 2001 and is an absolute masterpiece of a game. Long-term players know that the game has nearly infinite possibilities as a competitive game. Being an old game, it lacks many of the features you expect to find in more recent esport titles. The goal of Slippi is to bring Melee into the future and invigorate the sport surrounding the game. </p></description>
+  <provides>
+    <binary>dolphin-emu</binary>
+    <id>slippi.desktop</id>
+  </provides>
+  <url type="homepage">https://slippi.gg</url>
+  <url type="help">http://discord.gg/pPfEaW5</url>
+  <url type="bugtracker">https://github.com/project-slippi/Ishiiruka/issues</url>
+</application>

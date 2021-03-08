@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="runtime">
+  <id>org.freedesktop.Sdk.Extension.clangd</id>
+  <name>clangd</name>
+  <summary>clangd understands your C++ code and adds smart features to your editor: code completion, compile errors, go-to-definition and more.</summary>
+  <url type="homepage">https://clangd.llvm.org/</url>
+  <url type="bugtracker">https://bugs.llvm.org/</url>
+  <project_license>Apache License 2.0 with LLVM Exceptions (v9.0.0 or later)</project_license>
+  <metadata_license>CC0-1.0</metadata_license>
+</component>

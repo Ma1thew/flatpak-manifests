@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="runtime">
+  <id>org.freedesktop.Sdk.Extension.jsonls</id>
+  <name>jsonls</name>
+  <summary>Language server for JSON, extracted from the VSCode tree.</summary>
+  <url type="homepage">https://github.com/vscode-langservers/vscode-json-languageserver</url>
+  <project_license>MIT</project_license>
+  <metadata_license>CC0-1.0</metadata_license>
+</component>

@@ -1,0 +1,30 @@
+id: org.freedesktop.Sdk.Extension.clangd
+default-branch: 20.08
+sdk: org.freedesktop.Sdk//20.08
+runtime: org.freedesktop.Sdk
+runtime-version: 20.08
+build-extension: true
+appstream-compose: false
+modules:
+
+  - name: clangd
+    buildsystem: simple
+    builddir: true
+    build-commands:
+      - cmake llvm -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra"
+      - cmake --build $FLATPAK_BUILDER_BUILDDIR --parallel $FLATPAK_BUILDER_N_JOBS --target clangd
+      - mkdir -p /usr/lib/sdk/clangd
+      - cp -r $FLATPAK_BUILDER_BUILDDIR/bin /usr/lib/sdk/clangd/bin
+    sources:
+      - type: git
+        url: https://github.com/llvm/llvm-project
+        branch: main
+
+  - name: metadata
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 -t ${FLATPAK_DEST}/share/metainfo ${FLATPAK_ID}.metainfo.xml
+      - appstream-compose --basename=${FLATPAK_ID} --prefix=${FLATPAK_DEST} --origin=flatpak ${FLATPAK_ID}
+    sources:
+      - type: file
+        path: org.freedesktop.Sdk.Extension.clangd.metainfo.xml

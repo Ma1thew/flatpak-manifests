@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="runtime">
+  <id>org.freedesktop.Sdk.Extension.debugpy</id>
+  <name>debugpy</name>
+  <summary>An implementation of the Debug Adapter Protocol for Python.</summary>
+  <url type="homepage">https://github.com/microsoft/debugpy</url>
+  <url type="bugtracker">https://github.com/microsoft/debugpy/issues</url>
+  <project_license>MIT</project_license>
+  <metadata_license>CC0-1.0</metadata_license>
+</component>
