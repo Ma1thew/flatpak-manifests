@@ -26,11 +26,55 @@ jobs:
       - name: Add flathub remote
         run: sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-      - name: Run a multi-line script
-        run: |
-          sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.multimc.MultiMC5 "$GITHUB_WORKSPACE"/multimc-flatpak/org.multimc.MultiMC5.json
+      - name: io.neovim.nvim
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub io.neovim.nvim "$GITHUB_WORKSPACE"/io.neovim.nvim/io.neovim.nvim.yaml
+        
+      - name: org.multimc.MultiMC5
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.multimc.MultiMC5 "$GITHUB_WORKSPACE"/multimc-flatpak/org.multimc.MultiMC5.json
+
+      - name: gg.slippi.Ishiiruka
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub gg.slippi.Ishiiruka "$GITHUB_WORKSPACE"/slippi-flatpak/gg.slippi.Ishiiruka.json
+
+      - name: org.freedesktop.Sdk.Extension.clangd
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.clangd "$GITHUB_WORKSPACE"/nvim-flatpak-extensions/org.freedesktop.Sdk.Extension.clangd/org.freedesktop.Sdk.Extension.clangd.yml
+
+      - name: org.freedesktop.Sdk.Extension.cmakels
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.cmakels "$GITHUB_WORKSPACE"/nvim-flatpak-extensions/org.freedesktop.Sdk.Extension.cmakels/org.freedesktop.Sdk.Extension.cmakels.yml
+
+      - name: org.freedesktop.Sdk.Extension.code-minimap
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.code-minimap "$GITHUB_WORKSPACE"/nvim-flatpak-extensions/org.freedesktop.Sdk.Extension.code-minimap/org.freedesktop.Sdk.Extension.code-minimap.yml
+
+      - name: org.freedesktop.Sdk.Extension.debugpy
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.debugpy "$GITHUB_WORKSPACE"/nvim-flatpak-extensions/org.freedesktop.Sdk.Extension.debugpy/org.freedesktop.Sdk.Extension.debugpy.yml
+
+      - name: org.freedesktop.Sdk.Extension.fzf
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.fzf "$GITHUB_WORKSPACE"/nvim-flatpak-extensions/org.freedesktop.Sdk.Extension.fzf/org.freedesktop.Sdk.Extension.fzf.yml
+      
+      - name: org.freedesktop.Sdk.Extension.jdtls
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.jdtls "$GITHUB_WORKSPACE"/nvim-flatpak-extensions/org.freedesktop.Sdk.Extension.jdtls/org.freedesktop.Sdk.Extension.jdtls.yml
+      
+      - name: org.freedesktop.Sdk.Extension.jsonls
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.jsonls "$GITHUB_WORKSPACE"/nvim-flatpak-extensions/org.freedesktop.Sdk.Extension.jsonls/org.freedesktop.Sdk.Extension.jsonls.yml
+
+      - name: org.freedesktop.Sdk.Extension.pyright
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.pyright "$GITHUB_WORKSPACE"/nvim-flatpak-extensions/org.freedesktop.Sdk.Extension.pyright/org.freedesktop.Sdk.Extension.pyright.yml
+
+      - name: org.freedesktop.Sdk.Extension.rust-analyzer
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.rust-analyzer "$GITHUB_WORKSPACE"/nvim-flatpak-extensions/org.freedesktop.Sdk.Extension.rust-analyzer/org.freedesktop.Sdk.Extension.rust-analyzer.yml
+
+      - name: org.freedesktop.Sdk.Extension.texlab
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.texlab "$GITHUB_WORKSPACE"/nvim-flatpak-extensions/org.freedesktop.Sdk.Extension.texlab/org.freedesktop.Sdk.Extension.texlab.yml
+
+      - name: org.freedesktop.Sdk.Extension.universal-ctags
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.universal-ctags "$GITHUB_WORKSPACE"/nvim-flatpak-extensions/org.freedesktop.Sdk.Extension.universal-ctags/org.freedesktop.Sdk.Extension.universal-ctags.yml
+
+      - name: org.freedesktop.Sdk.Extension.vimls
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.vimls "$GITHUB_WORKSPACE"/nvim-flatpak-extensions/org.freedesktop.Sdk.Extension.vimls/org.freedesktop.Sdk.Extension.vimls.yml
+
+      - name: org.freedesktop.Sdk.Extension.yamlls
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.yamlls "$GITHUB_WORKSPACE"/nvim-flatpak-extensions/org.freedesktop.Sdk.Extension.yamlls/org.freedesktop.Sdk.Extension.yamlls.yml
           
-      - name: Pushes to another repository
+      - name: Push to repo
         uses: cpina/github-action-push-to-another-repository@master
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
