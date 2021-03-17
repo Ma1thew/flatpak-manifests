@@ -32,8 +32,8 @@ jobs:
       - name: org.multimc.MultiMC5
         run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.multimc.MultiMC5 "$GITHUB_WORKSPACE"/multimc-flatpak/org.multimc.MultiMC5.json
 
-      - name: gg.slippi.Ishiiruka
-        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub gg.slippi.Ishiiruka "$GITHUB_WORKSPACE"/slippi-flatpak/gg.slippi.Ishiiruka.json
+      #- name: gg.slippi.Ishiiruka
+      #  run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub gg.slippi.Ishiiruka "$GITHUB_WORKSPACE"/slippi-flatpak/gg.slippi.Ishiiruka.json
 
       - name: Push to repo
         uses: cpina/github-action-push-to-another-repository@master
