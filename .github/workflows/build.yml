@@ -45,8 +45,8 @@ jobs:
 
       - name: Sign repo
         run: |
-          flatpak build-sign repo --gpg-sign="$GPG_PUBLIC_KEY" --gpg-homedir=gpg
-          flatpak build-update-repo repo --gpg-sign="$GPG_PUBLIC_KEY" --gpg-homedir=gpg
+          sudo flatpak build-sign repo --gpg-sign="$GPG_PUBLIC_KEY" --gpg-homedir=gpg
+          sudo flatpak build-update-repo repo --gpg-sign="$GPG_PUBLIC_KEY" --gpg-homedir=gpg
           gpg --homedir=gpg --export "$GPG_PUBLIC_KEY" > repo/key.gpg
         env:
           GPG_PUBLIC_KEY: ${{ secrets.GPG_PUBLIC_KEY }}
