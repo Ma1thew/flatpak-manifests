@@ -1,6 +1,0 @@
-[submodule "slippi-flatpak"]
-	path = slippi-flatpak
-	url = https://github.com/Ma1thew/slippi-flatpak
-[submodule "multimc-flatpak"]
-	path = multimc-flatpak
-	url = https://github.com/Ma1thew/multimc-flatpak

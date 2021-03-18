@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>org.multimc.MultiMC5</id>
+  <name>MultiMC5</name>
+  <summary>MultiMC is a custom launcher for Minecraft that allows you to easily manage multiple installations of Minecraft at once.</summary>
+  <description>
+    <p>
+        MultiMC is a custom launcher for Minecraft that allows you to easily manage multiple installations of Minecraft at once.
+    </p>
+  </description>
+  <url type="homepage">https://multimc.org/</url>
+  <url type="bugtracker">https://github.com/MultiMC/MultiMC5/issues</url>
+  <project_license>Apache License 2.0</project_license>
+  <metadata_license>CC0-1.0</metadata_license>
+</component>
