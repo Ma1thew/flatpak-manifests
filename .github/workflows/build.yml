@@ -35,13 +35,13 @@ jobs:
           GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
 
       - name: io.neovim.nvim
-        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub io.neovim.nvim "$GITHUB_WORKSPACE"/io.neovim.nvim/io.neovim.nvim.yaml
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub io.neovim.nvim "$GITHUB_WORKSPACE"/manifests/io.neovim.nvim/io.neovim.nvim.yaml
         
       - name: org.multimc.MultiMC5
-        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.multimc.MultiMC5 "$GITHUB_WORKSPACE"/org.multimc.MultiMC5/org.multimc.MultiMC5.json
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.multimc.MultiMC5 "$GITHUB_WORKSPACE"/manifests/org.multimc.MultiMC5/org.multimc.MultiMC5.json
 
       - name: gg.slippi.Ishiiruka
-        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub gg.slippi.Ishiiruka "$GITHUB_WORKSPACE"/gg.slippi.Ishiiruka/gg.slippi.Ishiiruka.json
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub gg.slippi.Ishiiruka "$GITHUB_WORKSPACE"/manifests/gg.slippi.Ishiiruka/gg.slippi.Ishiiruka.json
 
       - name: Sign repo
         run: |
