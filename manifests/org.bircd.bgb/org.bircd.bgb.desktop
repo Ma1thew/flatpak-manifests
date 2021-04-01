@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=BGB
+GenericName=GBC Emulator
+Comment=An accurate emulator for the Gameboy and Gameboy Color
+Type=Application
+Terminal=false
+Exec=bgb %f
+Icon=org.bircd.bgb
+Categories=Game

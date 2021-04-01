@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>com.devrs.GBTD</id>
+  <name>GBTD</name>
+  <summary>An updated version of GBTD, a tool for creating GB tiles</summary>
+  <metadata_license>CC-BY-SA-3.0</metadata_license>
+  <project_license>MIT</project_license>
+  <description><p>With the Gameboy Tile Designer ("GBTD"), you can draw tiles which you can incorporate in your own Gameboy productions.</p></description>
+  <url type="homepage">https://github.com/untoxa/GBTD_GBMB</url>
+</component>

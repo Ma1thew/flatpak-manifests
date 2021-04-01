@@ -1,0 +1,34 @@
+id: org.freedesktop.Sdk.Extension.gbdk-2020
+default-branch: 20.08
+sdk: org.freedesktop.Sdk//20.08
+runtime: org.freedesktop.Sdk
+runtime-version: 20.08
+build-extension: true
+appstream-compose: false
+modules:
+
+  - name: gbdk-2020
+    buildsystem: simple
+    builddir: true
+    build-commands:
+      - sed -i 's/TARGETDIR = \/opt\/gbdk/TARGETDIR = \/usr\/lib\/sdk\/gbdk-2020/' Makefile
+      - SDCCDIR=$(pwd)/sdcc make
+      - cp -r build/gbdk/* /usr/lib/sdk/gbdk-2020
+    sources:
+      - type: git
+        url: https://github.com/Zal0/gbdk-2020
+        branch: master
+      - type: archive
+        url: http://sourceforge.net/projects/sdcc/files/snapshot_builds/amd64-unknown-linux2.5/sdcc-snapshot-amd64-unknown-linux2.5-20210321-12150.tar.bz2/download
+        archive-type: tar-bzip2
+        dest: sdcc
+        sha256: baa1f7251624191292e7e449f5105555831f91b873bc187428b1ecba7643cbd3
+
+  - name: metadata
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 -t ${FLATPAK_DEST}/share/metainfo ${FLATPAK_ID}.metainfo.xml
+      - appstream-compose --basename=${FLATPAK_ID} --prefix=${FLATPAK_DEST} --origin=flatpak ${FLATPAK_ID}
+    sources:
+      - type: file
+        path: org.freedesktop.Sdk.Extension.gbdk-2020.metainfo.xml

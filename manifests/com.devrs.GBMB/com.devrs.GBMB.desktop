@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=GBMB
+GenericName=Gameboy Map Builder
+Comment=An updated version of GBMB, a tool for creating GB maps
+Type=Application
+Terminal=false
+Exec=gbmb %f
+Icon=com.devrs.GBMB
+Categories=Development;Graphics

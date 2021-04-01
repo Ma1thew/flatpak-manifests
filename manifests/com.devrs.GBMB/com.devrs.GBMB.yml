@@ -1,0 +1,126 @@
+app-id: com.devrs.GBMB
+
+runtime: org.freedesktop.Platform
+runtime-version: '20.08'
+sdk: org.freedesktop.Sdk
+
+sdk-extensions:
+  - org.freedesktop.Sdk.Compat.i386
+  - org.freedesktop.Sdk.Extension.toolchain-i386
+
+add-extensions:
+  org.freedesktop.Platform.Compat.i386:
+    directory: lib/i386-linux-gnu
+    version: '20.08'
+
+command: gbmb
+
+finish-args:
+  - --filesystem=home
+  - --socket=x11
+  - --socket=wayland
+  - --share=ipc
+  - --allow=multiarch
+  - --env=LD_LIBRARY_PATH=/app/lib:/app/lib32
+
+modules:
+
+  - name: compat
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/i386-linux-gnu
+
+  - name: wine32
+    builddir: true
+    build-options:
+      prefix: /app
+      prepend-path: /app/bin
+      ldflags: -L/app/lib32
+      append-path: /usr/lib/sdk/toolchain-i386/bin
+      env:
+        CC: i686-unknown-linux-gnu-gcc
+        CXX: i686-unknown-linux-gnu-g++
+      libdir: /app/lib32
+      strip: true
+    config-opts:
+      - --disable-win16
+      - --disable-tests
+      - --with-x
+      - --with-pulse
+      - --without-cups
+      - --without-curses
+      - --without-capi
+      - --without-glu
+      - --without-gphoto
+      - --without-gsm
+      - --without-hal
+      - --without-ldap
+      - --without-netapi
+      - --without-opencl
+      - --without-pcap
+      - --without-udev
+      - --without-v4l
+      - --with-dbus
+      - --without-oss
+    cleanup:
+      - '*.a'
+      - '*.la'
+      - /include
+      - /lib/pkgconfig
+      - /lib32/pkgconfig
+      - /lib/cmake
+      - /lib32/cmake
+      - /share/man
+
+      - /bin/function_grep.pl
+      - /bin/widl
+      - /bin/winebuild
+      - /bin/winecpp
+      - /bin/winedump
+      - /bin/wineg++
+      - /bin/winegcc
+      - /bin/winemaker
+      - /bin/wmc
+      - /bin/wrc
+
+      - /lib/wine/*.def
+      - /lib32/wine/*.def
+    make-install-args:
+      - LDCONFIG=/bin/true
+      - STRIP=/bin/true
+      - UPDATE_DESKTOP_DATABASE=/bin/true
+    sources:
+      - type: archive
+        url: https://dl.winehq.org/wine/source/6.x/wine-6.4.tar.xz
+        sha256: 1b2d2b453d90d6c2d7124e47faeae50e5c54c25f69bee1d06531843261024c8f
+      - type: archive
+        url: https://github.com/wine-staging/wine-staging/archive/refs/tags/v6.4.tar.gz
+        sha256: 849daae53c114e85e5c3d5af13ae6dfd9b9bb46cf64f1c275e683212c5c5942e
+      - type: shell
+        commands:
+          - ./patches/patchinstall.sh DESTDIR=$(pwd) --all
+
+  - name: gbmb
+    buildsystem: simple
+    build-commands:
+      - unzip GBTD_GBMB_release.zip
+      - install -Dm644 GBMB/gbmb.exe "$FLATPAK_DEST/share/gbmb.exe"
+      - install -Dm755 run.sh "$FLATPAK_DEST/bin/gbmb"
+      - install -Dm644 com.devrs.GBMB.desktop "$FLATPAK_DEST/share/applications/com.devrs.GBMB.desktop"
+      - install -Dm644 com.devrs.GBMB.svg "$FLATPAK_DEST/share/icons/hicolor/scalable/apps/com.devrs.GBMB.svg"
+      - install -Dm644 com.devrs.GBMB-symbolic.svg "$FLATPAK_DEST/share/icons/hicolor/symbolic/apps/com.devrs.GBMB-symbolic.svg"
+    sources:
+      - type: file
+        url: https://github.com/untoxa/GBTD_GBMB/releases/download/2.4.4/GBTD_GBMB_release.zip
+        sha256: 15fe29749c36371e95abd3591d0a51c4f0955b51e82e24c810e1ef9cc752b95b
+      - type: script
+        dest-filename: run.sh
+        commands:
+          - if [ ! -e "$XDG_DATA_HOME/gbmb.exe" ]; then ln -s /app/share/gbmb.exe "$XDG_DATA_HOME/gbmb.exe"; fi
+          - WINEPREFIX="$XDG_DATA_HOME/prefix" wine "$XDG_DATA_HOME/gbmb.exe" $@
+      - type: file
+        path: com.devrs.GBMB.desktop
+      - type: file
+        path: icon/com.devrs.GBMB.svg
+      - type: file
+        path: icon/com.devrs.GBMB-symbolic.svg

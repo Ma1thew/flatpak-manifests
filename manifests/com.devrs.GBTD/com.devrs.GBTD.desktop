@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=GBTD
+GenericName=Gameboy Tile Designer
+Comment=An updated version of GBTD, a tool for creating GB tiles
+Type=Application
+Terminal=false
+Exec=gbtd %f
+Icon=com.devrs.GBTD
+Categories=Development;Graphics

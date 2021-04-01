@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>com.devrs.GBMB</id>
+  <name>GBMB</name>
+  <summary>An updated version of GBMB, a tool for creating GB maps</summary>
+  <metadata_license>CC-BY-SA-3.0</metadata_license>
+  <project_license>MIT</project_license>
+  <description><p>With the Gameboy Map Builder ("GBMB"), you can make maps which you can incorporate in your own Gameboy productions.</p></description>
+  <url type="homepage">https://github.com/untoxa/GBTD_GBMB</url>
+</component>

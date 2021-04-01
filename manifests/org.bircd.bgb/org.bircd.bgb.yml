@@ -1,0 +1,103 @@
+app-id: org.bircd.bgb
+
+runtime: org.freedesktop.Sdk
+runtime-version: '20.08'
+sdk: org.freedesktop.Sdk
+
+command: bgb
+
+finish-args:
+  - --filesystem=home
+  - --socket=x11
+  - --socket=wayland
+  - --socket=pulseaudio
+  - --device=dri
+  - --share=ipc
+
+modules:
+  - name: wine64
+    only-arches:
+      - x86_64
+    builddir: true
+    build-options:
+      prefix: /app
+      prepend-path: /app/bin
+      strip: true
+    config-opts:
+      - --enable-win64
+      - --disable-win16
+      - --disable-tests
+      - --with-x
+      - --with-pulse
+      - --without-cups
+      - --without-curses
+      - --without-capi
+      - --without-glu
+      - --without-gphoto
+      - --without-gsm
+      - --without-hal
+      - --without-ldap
+      - --without-netapi
+      - --without-opencl
+      - --without-pcap
+      - --without-udev
+      - --without-v4l
+      - --with-dbus
+      - --without-oss
+    cleanup:
+      - '*.a'
+      - '*.la'
+      - /include
+      - /lib/pkgconfig
+      - /lib/cmake
+      - /share/man
+
+      - /bin/function_grep.pl
+      - /bin/widl
+      - /bin/winebuild
+      - /bin/winecpp
+      - /bin/winedump
+      - /bin/wineg++
+      - /bin/winegcc
+      - /bin/winemaker
+      - /bin/wmc
+      - /bin/wrc
+
+      - /lib/wine/*.def
+    make-install-args:
+      - LDCONFIG=/bin/true
+      - STRIP=/bin/true
+      - UPDATE_DESKTOP_DATABASE=/bin/true
+    sources:
+      - type: archive
+        url: https://dl.winehq.org/wine/source/6.x/wine-6.4.tar.xz
+        sha256: 1b2d2b453d90d6c2d7124e47faeae50e5c54c25f69bee1d06531843261024c8f
+      - type: archive
+        url: https://github.com/wine-staging/wine-staging/archive/refs/tags/v6.4.tar.gz
+        sha256: 849daae53c114e85e5c3d5af13ae6dfd9b9bb46cf64f1c275e683212c5c5942e
+      - type: shell
+        commands:
+          - ./patches/patchinstall.sh DESTDIR=$(pwd) --all
+
+  - name: bgb
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 bgb64.exe "$FLATPAK_DEST/share/bgb64.exe"
+      - install -Dm755 run.sh "$FLATPAK_DEST/bin/bgb"
+      - install -Dm644 org.bircd.bgb.desktop "$FLATPAK_DEST/share/applications/org.bircd.bgb.desktop"
+      - install -Dm644 org.bircd.bgb.svg "$FLATPAK_DEST/share/icons/hicolor/scalable/apps/org.bircd.bgb.svg"
+      - install -Dm644 org.bircd.bgb-symbolic.svg "$FLATPAK_DEST/share/icons/hicolor/symbolic/apps/org.bircd.bgb-symbolic.svg"
+    sources:
+      - type: archive
+        url: https://bgb.bircd.org/bgbw64.zip
+        sha256: 1016cf355c62173d8facb0b56c54b52df8efcf0364732b52a9388d36fbdbb0cc
+      - type: script
+        dest-filename: run.sh
+        commands:
+          - WINEPREFIX="$XDG_DATA_HOME/prefix" wine64 /app/share/bgb64.exe $@
+      - type: file
+        path: org.bircd.bgb.desktop
+      - type: file
+        path: icon/org.bircd.bgb.svg
+      - type: file
+        path: icon/org.bircd.bgb-symbolic.svg
