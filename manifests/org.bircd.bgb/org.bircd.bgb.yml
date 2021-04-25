@@ -90,7 +90,7 @@ modules:
     sources:
       - type: archive
         url: https://bgb.bircd.org/bgbw64.zip
-        sha256: 1016cf355c62173d8facb0b56c54b52df8efcf0364732b52a9388d36fbdbb0cc
+        sha256: 8685fc9daf09ceb384330ce543d05471fcc1d427c65de0d68875a97a57532763
       - type: script
         dest-filename: run.sh
         commands:
