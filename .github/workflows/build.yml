@@ -43,6 +43,18 @@ jobs:
       - name: gg.slippi.Ishiiruka
         run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub gg.slippi.Ishiiruka "$GITHUB_WORKSPACE"/manifests/gg.slippi.Ishiiruka/gg.slippi.Ishiiruka.json
 
+      - name: com.devrs.GBMB
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub com.devrs.GBMB "$GITHUB_WORKSPACE"/manifests/com.devrs.GBMB/com.devrs.GBMB.json
+
+      - name: com.devrs.GBTD
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub com.devrs.GBTD "$GITHUB_WORKSPACE"/manifests/com.devrs.GBTD/com.devrs.GBTD.json
+
+      - name: org.bircd.bgb
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.bircd.bgb "$GITHUB_WORKSPACE"/manifests/org.bircd.bgb/org.bircd.bgb.json
+
+      - name: org.freedesktop.Sdk.Extension.gbdk-2020
+        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.gbdk-2020 "$GITHUB_WORKSPACE"/manifests/org.freedesktop.Sdk.Extension.gbdk-2020/org.freedesktop.Sdk.Extension.gbdk-2020.json
+
       - name: Sign repo
         run: |
           sudo flatpak build-sign repo --gpg-sign="$GPG_PUBLIC_KEY" --gpg-homedir=gpg
