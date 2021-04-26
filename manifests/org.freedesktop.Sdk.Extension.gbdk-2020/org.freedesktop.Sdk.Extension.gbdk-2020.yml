@@ -19,7 +19,7 @@ modules:
         url: https://github.com/Zal0/gbdk-2020
         branch: master
       - type: archive
-        url: http://sourceforge.net/projects/sdcc/files/snapshot_builds/amd64-unknown-linux2.5/sdcc-snapshot-amd64-unknown-linux2.5-20210321-12150.tar.bz2/download
+        url: http://sourceforge.net/projects/sdcc/files/snapshot_builds/amd64-unknown-linux2.5/sdcc-snapshot-amd64-unknown-linux2.5-20210426-12246.tar.bz2/download
         archive-type: tar-bzip2
         dest: sdcc
         sha256: baa1f7251624191292e7e449f5105555831f91b873bc187428b1ecba7643cbd3
