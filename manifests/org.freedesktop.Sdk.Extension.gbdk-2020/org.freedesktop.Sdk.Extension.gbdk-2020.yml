@@ -22,7 +22,7 @@ modules:
         url: http://sourceforge.net/projects/sdcc/files/snapshot_builds/amd64-unknown-linux2.5/sdcc-snapshot-amd64-unknown-linux2.5-20210426-12246.tar.bz2/download
         archive-type: tar-bzip2
         dest: sdcc
-        sha256: baa1f7251624191292e7e449f5105555831f91b873bc187428b1ecba7643cbd3
+        sha256: bfd55f982e8a87096d7392fd483af2b6246b8fc46ec7635c59cccea52c58099c
 
   - name: metadata
     buildsystem: simple
