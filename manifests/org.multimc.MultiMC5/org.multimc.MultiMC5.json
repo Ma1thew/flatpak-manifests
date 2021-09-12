@@ -6,7 +6,8 @@
     "command": "multimc",
     "separate-locales": false,
     "sdk-extensions": [
-        "org.freedesktop.Sdk.Extension.openjdk8"
+        "org.freedesktop.Sdk.Extension.openjdk8",
+        "org.freedesktop.Sdk.Extension.openjdk"
     ],
     "finish-args": [
         "--socket=x11",
@@ -15,10 +16,10 @@
         "--device=dri",
         "--socket=pulseaudio",
         "--share=network",
-        "--env=JAVA_HOME=/app/jre"
+	"--env=JAVA_HOME=/app/jre"
     ],
     "build-options": {
-        "append-path": "/usr/lib/sdk/openjdk8/bin"
+        "append-path": "/usr/lib/sdk/openjdk/bin"
     },
     "modules": [
         {
@@ -32,19 +33,27 @@
             ]
         },
         {
-            "name": "openjdk",
+            "name": "openjdk8",
             "buildsystem": "simple",
             "build-commands": [
-                "/usr/lib/sdk/openjdk8/install.sh"
+                "sed 's|/app/jre|/app/jre8|g'  /usr/lib/sdk/openjdk8/install.sh | sh"
             ],
             "cleanup" : [
                 "/jre/jre/lib/amd64/server/libjvm.diz"
             ]
         },
         {
+            "name": "openjdk-latest",
+            "buildsystem": "simple",
+            "build-commands": [
+                "/usr/lib/sdk/openjdk/install.sh"
+            ]
+        },
+        {
             "name": "multimc5",
             "buildsystem": "cmake-ninja",
             "config-opts": [
+		"-DJAVA_HOME=/usr/lib/sdk/openjdk8",
                 "-DCMAKE_BUILD_TYPE=Release",
                 "-DCMAKE_INSTALL_PREFIX=/app",
                 "-DMultiMC_LAYOUT=lin-system"
@@ -57,8 +66,8 @@
                 } 
             ],
             "post-install": [
-                "install -D -m 644 ./application/resources/multimc/scalable/multimc.svg /app/share/icons/hicolor/scalable/apps/org.multimc.MultiMC5.svg",
-                "install -D -m 644 ./application/package/linux/multimc.desktop /app/share/applications/org.multimc.MultiMC5.desktop",
+                "install -D -m 644 ./launcher/resources/multimc/scalable/multimc.svg /app/share/icons/hicolor/scalable/apps/org.multimc.MultiMC5.svg",
+                "install -D -m 644 ./launcher/package/linux/multimc.desktop /app/share/applications/org.multimc.MultiMC5.desktop",
                 "desktop-file-edit --set-key=Icon --set-value='org.multimc.MultiMC5' /app/share/applications/org.multimc.MultiMC5.desktop"
             ]
         }, 

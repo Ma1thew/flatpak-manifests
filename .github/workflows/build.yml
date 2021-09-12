@@ -34,26 +34,26 @@ jobs:
         env:
           GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
 
-      - name: io.neovim.nvim
-        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub io.neovim.nvim "$GITHUB_WORKSPACE"/manifests/io.neovim.nvim/io.neovim.nvim.yaml
+#      - name: io.neovim.nvim
+#        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub io.neovim.nvim "$GITHUB_WORKSPACE"/manifests/io.neovim.nvim/io.neovim.nvim.yaml
         
       - name: org.multimc.MultiMC5
         run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.multimc.MultiMC5 "$GITHUB_WORKSPACE"/manifests/org.multimc.MultiMC5/org.multimc.MultiMC5.json
 
-      - name: gg.slippi.Ishiiruka
-        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub gg.slippi.Ishiiruka "$GITHUB_WORKSPACE"/manifests/gg.slippi.Ishiiruka/gg.slippi.Ishiiruka.json
+#      - name: gg.slippi.Ishiiruka
+#        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub gg.slippi.Ishiiruka "$GITHUB_WORKSPACE"/manifests/gg.slippi.Ishiiruka/gg.slippi.Ishiiruka.json
 
-      - name: com.devrs.GBMB
-        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub com.devrs.GBMB "$GITHUB_WORKSPACE"/manifests/com.devrs.GBMB/com.devrs.GBMB.yml
+#      - name: com.devrs.GBMB
+#        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub com.devrs.GBMB "$GITHUB_WORKSPACE"/manifests/com.devrs.GBMB/com.devrs.GBMB.yml
 
-      - name: com.devrs.GBTD
-        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub com.devrs.GBTD "$GITHUB_WORKSPACE"/manifests/com.devrs.GBTD/com.devrs.GBTD.yml
+#      - name: com.devrs.GBTD
+#        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub com.devrs.GBTD "$GITHUB_WORKSPACE"/manifests/com.devrs.GBTD/com.devrs.GBTD.yml
 
-      - name: org.bircd.bgb
-        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.bircd.bgb "$GITHUB_WORKSPACE"/manifests/org.bircd.bgb/org.bircd.bgb.yml
+#      - name: org.bircd.bgb
+#        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.bircd.bgb "$GITHUB_WORKSPACE"/manifests/org.bircd.bgb/org.bircd.bgb.yml
 
-      - name: org.freedesktop.Sdk.Extension.gbdk-2020
-        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.gbdk-2020 "$GITHUB_WORKSPACE"/manifests/org.freedesktop.Sdk.Extension.gbdk-2020/org.freedesktop.Sdk.Extension.gbdk-2020.yml
+#      - name: org.freedesktop.Sdk.Extension.gbdk-2020
+#        run: sudo flatpak-builder --repo=repo --force-clean --install-deps-from=flathub org.freedesktop.Sdk.Extension.gbdk-2020 "$GITHUB_WORKSPACE"/manifests/org.freedesktop.Sdk.Extension.gbdk-2020/org.freedesktop.Sdk.Extension.gbdk-2020.yml
 
       - name: Sign repo
         run: |
