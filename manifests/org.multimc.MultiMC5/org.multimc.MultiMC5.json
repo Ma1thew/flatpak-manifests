@@ -39,7 +39,7 @@
                 "sed 's|/app/jre|/app/jre8|g'  /usr/lib/sdk/openjdk8/install.sh | sh"
             ],
             "cleanup" : [
-                "/jre/jre/lib/amd64/server/libjvm.diz"
+                "/jre8/jre/lib/amd64/server/libjvm.diz"
             ]
         },
         {
@@ -49,6 +49,27 @@
                 "/usr/lib/sdk/openjdk/install.sh"
             ]
         },
+	{
+	    "name": "gamemode",
+	    "buildsystem": "meson",
+	    "config-opts": [
+		"-Dwith-systemd=false",
+		"-Dwith-daemon=false",
+		"-Dwith-examples=false",
+		"-Dwith-util=false",
+		"-Dwith-sd-bus-provider=no-daemon"
+	    ],
+	    "sources": [
+		{
+		    "type": "archive",
+		    "url": "https://github.com/FeralInteractive/gamemode/releases/download/1.6.1/gamemode-1.6.1.tar.xz",
+		    "sha256": "10c2a3f142eae472f5a09e42616e38c666c05b25ca3e61e562a543bb3fda66c5"
+		}
+	    ],
+	    "post-install": [
+		"install -D -m 755 ../data/gamemoderun /app/bin"
+	    ]
+	},
         {
             "name": "multimc5",
             "buildsystem": "cmake-ninja",
